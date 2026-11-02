@@ -1,0 +1,15 @@
+# Sample only. Copy to ~/.config/containers/systemd/openpak-np-update.container.
+[Unit]
+Description=OpenPak np-update
+
+[Container]
+ContainerName=openpak-np-update
+Image=ghcr.io/openpak/np-update:latest
+Network=openpak
+Environment=NP_HTTP_ADDR=:8534
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

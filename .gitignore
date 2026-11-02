@@ -1,0 +1,5 @@
+/np-update
+*.log
+.env
+next-session.md
+NEXT-SESSION.md
