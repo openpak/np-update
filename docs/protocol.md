@@ -19,3 +19,9 @@ A `200` reply is parsed as
 
 np-update answers `404` with an empty body to every `GET /tpl/...`, the status Sony serves for titles without a
 patch. OpenPak never hosts Sony or game patch packages, so no list is ever returned.
+
+## Pass-through (0.2.0)
+
+Since 0.2.0 the list and packages come from Sony: the `404` section above is the reply only when Sony is unreachable or the
+Host is not `*.dl.playstation.net`. `/tpl/` is fetched from `https://<Host>` (Sony's SCEI DNAS Root 05 pinned; the leaf is SHA-1
+signed so `verifyChain` checks it by hand), `/tppkg/` from `http://<Host>` as the list's `url` attributes specify (Range is forwarded).
