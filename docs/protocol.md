@@ -25,3 +25,9 @@ patch. OpenPak never hosts Sony or game patch packages, so no list is ever retur
 Since 0.2.0 the list and packages come from Sony: the `404` section above is the reply only when Sony is unreachable or the
 Host is not `*.dl.playstation.net`. `/tpl/` is fetched from `https://<Host>` (Sony's SCEI DNAS Root 05 pinned; the leaf is SHA-1
 signed so `verifyChain` checks it by hand), `/tppkg/` from `http://<Host>` as the list's `url` attributes specify (Range is forwarded).
+
+From ps3-patcher v0.2.20 (card #176) packages go console to Sony directly: the patcher's catcher lists `b0.ww.np.dl.playstation.net`
+(the host of every `/tppkg/` URL in Sony's lists) as a `never` name, so it resolves through the console's own DNS. `a0` stays caught
+(`/tpl/` here, plus `/tss/` and `/user_storage/` for OpenPak). The `/tppkg/` pass-through remains only for older patcher builds and for
+clients that resolve through OpenPak's DNS resolver, which answers `redirect.never` names too. A patch download on a v0.2.20 console
+leaves no `/tppkg/` line in the np-update log.
